@@ -39,13 +39,13 @@ Welcome to the Database Visualizer app! This React application allows you to vis
 
 Here are some screenshots of the application:
 
-### Dashboard
+### File Upload
 ![Landing Page](./.screenshots/loading_page.png)
 
 ### Table View
 ![Table View](./.screenshots/table_view.png)
 
-### Settings
+### Invalid File
 ![Invalid File](./.screenshots/invalid_file.png)
 
 ## License
