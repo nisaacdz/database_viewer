@@ -12,8 +12,12 @@ const MainPage = ({ update }) => {
 
   const handleViewAttempt = async (event) => {
     if (!file) return;
-    const db = await loadDatabase(file);
-    await update({database: db, filename: file.name});
+    try {
+        const db = await loadDatabase(file);
+        await update({database: db, filename: file.name});
+    } catch(e) {
+        alert(`${file.name} is not a valid SQL database`);
+    }
   }
 
   return (

@@ -4,22 +4,39 @@ import { getColumnNames, getAllRows } from '../parser';
 
 const Table = ({ name, database }) => {
   const [table, setTable] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const headers = getColumnNames(database, name);
-    const rows = getAllRows(database, name);
-    console.log(rows);
-    setTable({ headers, rows });
+    setLoading(true);
+    try {
+      const headers = getColumnNames(database, name);
+      const rows = getAllRows(database, name);
+      setTable({ headers, rows });
+      setLoading(false);
+    } catch (e) {
+      setTable(null);
+      setLoading(false);
+    }
   }, [name]);
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   if (!table) {
-    return <div/>;
+    return (
+      <div className="table-container">
+        <h2>{name}</h2>
+        <p> Not a valid SQL table. </p>
+      </div>
+    );
   }
 
   const { headers, rows } = table;
 
   return (
     <div className="table-container">
+      <h2>{name}</h2>
       <table>
         <thead>
           <tr>

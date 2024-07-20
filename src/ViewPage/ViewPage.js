@@ -7,9 +7,12 @@ const ViewPage = ({data, update }) => {
     const { database, filename} = data;
     const [tableNames, setTableNames] = useState(null);
     useEffect(() => {
+        try {
         const value = getTableNames(database);
-        if (value) {
-            setTableNames(value);
+        setTableNames(value);
+        } catch(e) {
+            alert(`${filename} is not a valid SQL database`);
+            update(null);
         }
     }, [database]);
     return (
