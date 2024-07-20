@@ -18,7 +18,7 @@ const ViewPage = ({data, update }) => {
     return (
         <div className="view-page-container">
             <header className="header">
-                <h1>Database Visualizer</h1>
+                <h1>Database Viewer</h1>
             </header>
             <section className="text-section">
                 <button id='tomainpage' onClick={() => update(null)}>Back</button>

@@ -22,6 +22,7 @@ export function getColumnNames(db, tableName) {
 
 export function getAllRows(db, tableName) {
   const result = db.exec(`SELECT * FROM ${tableName};`);
+  if (!result || !result[0]) return [];
   const rows = result[0].values;
   return rows;
 }
