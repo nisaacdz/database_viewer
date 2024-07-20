@@ -4,17 +4,17 @@ import { getTableNames } from '../parser';
 import Table from '../Table/Table';
 
 const ViewPage = ({data, update }) => {
-    const { database, filename} = data;
     const [tableNames, setTableNames] = useState(null);
     useEffect(() => {
+        console.log("hook is run");
         try {
-        const value = getTableNames(database);
+        const value = getTableNames(data.database);
         setTableNames(value);
         } catch(e) {
-            alert(`${filename} is not a valid SQL database`);
+            alert(`${data.filename} is not a valid SQL database`);
             update(null);
         }
-    }, [database]);
+    }, [data.database]);
     return (
         <div className="view-page-container">
             <header className="header">
@@ -24,12 +24,12 @@ const ViewPage = ({data, update }) => {
                 <button id='tomainpage' onClick={() => update(null)}>Back</button>
             </section>
             <section className="tables-section">
-                <h2>{filename}</h2>
+                <h2>{data.filename}</h2>
                 {(!tableNames || tableNames.length === 0) ? (
                     <p>No tables available.</p>
                 ) : (
                     tableNames.map((tableName) => (
-                        <Table key={tableName} name={tableName} database={database} />
+                        <Table key={tableName} name={tableName} database={data.database} />
                     ))
                 )}
             </section>

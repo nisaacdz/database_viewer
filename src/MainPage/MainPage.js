@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "./MainPage.css";
 import { loadDatabase } from "../parser";
-import { Database } from "sql-wasm";
 
 const MainPage = ({ update }) => {
   const [file, setFile] = useState(null);
